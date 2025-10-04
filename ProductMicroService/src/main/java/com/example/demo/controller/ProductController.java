@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.repo.Product;
+import com.example.demo.model.Product;
 import com.example.demo.service.ProductService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -90,4 +90,17 @@ public class ProductController {
 		productService.restoreProduct(id,quantity);
 		return ResponseEntity.ok("Product quantity restored");
 	}
+	
+	@Operation(summary = "Get products by category", description = "Returns products that match the given category")
+	@GetMapping("/category/{category}")
+	public List<Product> getProductsByCategory(@PathVariable("category") String category) {
+	    return productService.getProductsByCategory(category);
+	}
+
+	@Operation(summary = "Get products by price range and category", description = "Returns products within a price range and category")
+	@GetMapping("/filter/{category}/{minPrice}/{maxPrice}")
+	public List<Product> getProductsByPriceRangeAndCategory(@PathVariable("category") String category, @PathVariable("minPrice") int minPrice,@PathVariable("maxPrice") int maxPrice) {
+	    return productService.getProductsByPriceRangeAndCategory(minPrice, maxPrice, category);
+	}
+
 }

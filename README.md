@@ -4,7 +4,7 @@
 - Contains **Product Microservice** and **Order Microservice**
 - Integrated with **MySQL database** for persistent storage
 - **Role-based security** with in-memory authentication:
-  - Admin: full access to Product service
+  - Admin: full access to Product service and Order service
   - User: access only to Order service
 - **REST Template** used for communication between Product and Order services
 - **API Gateway** as the single entry point with security configuration
